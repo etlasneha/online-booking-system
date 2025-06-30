@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookEase - Online Booking System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Authentication Container -->
+    <div id="authContainer" class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>BookEase</span>
+                </div>
+                <h2>Welcome to BookEase</h2>
+                <p>Sign in to access your booking dashboard</p>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <div class="password-input">
+                        <input type="password" id="loginPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="rememberMe">
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                </div>
+                <button type="submit" class="auth-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Sign In
+                </button>
+            </form>
+            
+            <!-- Register Form -->
+            <form id="registerForm" class="auth-form" style="display: none;">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <div class="password-input">
+                        <input type="password" id="registerPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('registerPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="password-input">
+                        <input type="password" id="confirmPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#" onclick="showTerms()">Terms & Conditions</a>
+                    </label>
+                </div>
+                <button type="submit" class="auth-btn">
+                    <i class="fas fa-user-plus"></i>
+                    Create Account
+                </button>
+            </form>
+            
+            <div class="auth-footer">
+                <p id="authToggle">
+                    Don't have an account? 
+                    <a href="#" onclick="toggleAuthForm()">Sign up here</a>
+                </p>
+                <p id="forgotPassword">
+                    <a href="#" onclick="showForgotPassword()">Forgot your password?</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application Container -->
+    <div id="mainApp" class="main-app" style="display: none;">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>BookEase</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#booking" class="nav-link">Book Now</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                </ul>
+                <div class="nav-user">
+                    <span class="user-name" id="userName">User</span>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Welcome to BookEase</h1>
+                <p>Your one-stop solution for hassle-free online bookings</p>
+                <a href="#booking" class="cta-button">Start Booking Now</a>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-user-md"></i>
+                        <h3>Medical Appointments</h3>
+                        <p>Book consultations with healthcare professionals</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-cut"></i>
+                        <h3>Beauty & Spa</h3>
+                        <p>Schedule beauty treatments and spa sessions</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-utensils"></i>
+                        <h3>Restaurant Reservations</h3>
+                        <p>Reserve tables at your favorite restaurants</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-car"></i>
+                        <h3>Transportation</h3>
+                        <p>Book rides and transportation services</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="booking" class="booking">
+            <div class="container">
+                <h2>Make Your Booking</h2>
+                <div class="booking-container">
+                    <div class="booking-form">
+                        <form id="bookingForm">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" placeholder="Enter your full name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="Enter your email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="service">Select Service</label>
+                                <select id="service" required>
+                                    <option value="">Choose a service</option>
+                                    <option value="medical">Medical Appointment</option>
+                                    <option value="beauty">Beauty & Spa</option>
+                                    <option value="restaurant">Restaurant Reservation</option>
+                                    <option value="transport">Transportation</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="date">Preferred Date</label>
+                                    <input type="date" id="date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="time">Preferred Time</label>
+                                    <input type="time" id="time" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="notes">Additional Notes</label>
+                                <textarea id="notes" placeholder="Any special requirements or notes..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-calendar-plus"></i>
+                                Book Appointment
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="booking-info">
+                        <h3>Booking Information</h3>
+                        <div class="info-card">
+                            <i class="fas fa-clock"></i>
+                            <h4>Available Hours</h4>
+                            <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                            <p>Saturday: 10:00 AM - 4:00 PM</p>
+                            <p>Sunday: Closed</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-info-circle"></i>
+                            <h4>Important Notes</h4>
+                            <ul>
+                                <li>Bookings are confirmed via email</li>
+                                <li>Cancellation policy: 24 hours notice</li>
+                                <li>Please arrive 10 minutes early</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bookings List Section -->
+        <section class="bookings-list">
+            <div class="container">
+                <h2>Your Bookings</h2>
+                <div class="bookings-container">
+                    <div class="bookings-header">
+                        <h3>Recent Bookings</h3>
+                        <button id="clearAll" class="clear-btn">
+                            <i class="fas fa-trash"></i>
+                            Clear All
+                        </button>
+                    </div>
+                    <div id="bookingsList" class="bookings-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2>About BookEase</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>BookEase is a modern online booking platform designed to simplify the appointment scheduling process. Our user-friendly interface and comprehensive features make booking appointments effortless for both customers and service providers.</p>
+                        <div class="features">
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Easy-to-use interface</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Real-time availability</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Email confirmations</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>24/7 booking access</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>BookEase</h3>
+                        <p>Making booking simple and efficient</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contact</h4>
+                        <p><i class="fas fa-envelope"></i> info@bookease.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 BookEase. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Success Modal -->
+        <div id="successModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-check-circle"></i> Booking Confirmed!</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p>Your booking has been successfully created. You will receive a confirmation email shortly.</p>
+                    <div id="bookingDetails"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
